@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const commander = require("commander");
+const fs = require("fs");
 
 const pkg = require("../package.json");
 const Protocol = require("../dist");
@@ -11,8 +12,12 @@ commander
   .description("Parse binary message data")
   .option("-d, --data <data>", "Binary hex data of message")
   .option("-c, --copy_to_clipboard", "Whether copy parsed result to clipboard")
+  .option("-i, --input <input>", "File contains binary hex data of message")
+  .option("-o, --output <output>", "Save parsed result to file")
   .action(cmd => {
-    const data = cmd.data;
+    const input = cmd.input;
+    const output = cmd.output;
+    const data = input ? fs.readFileSync(input) : cmd.data;
 
     if (!data) {
       console.log("No data specify!");
@@ -23,7 +28,12 @@ commander
         const req = protocol.parse(buf);
 
         const jsStr = JSON.stringify(req, 0, 2);
-        console.log(jsStr);
+        if (output) {
+          fs.writeFileSync(output, jsStr);
+          console.log(`Parsed result save to file ${output}`);
+        } else {
+          console.log(jsStr);
+        }
       } catch (error) {
         console.error(error);
       }
