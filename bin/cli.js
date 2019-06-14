@@ -30,8 +30,10 @@ commander
         const jsStr = JSON.stringify(req, 0, 2);
         if (output) {
           fs.writeFileSync(output, jsStr);
+          console.log(`Parsed result save to file ${output}`);
+        } else {
+          console.log(jsStr);
         }
-        console.log(jsStr);
       } catch (error) {
         console.error(error);
       }
