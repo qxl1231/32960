@@ -41,12 +41,10 @@ export default [
       length: 107,
       body: {
         at: new Date("2018-06-21T05:49:47.000Z"),
-        items: [
-          {
-            type: "TEN_SECONDS",
-            datas: [ten, ten, ten, ten, ten, ten, ten, ten, ten, ten],
-          },
-        ],
+        tenSeconds: {
+          type: "TEN_SECONDS",
+          datas: [ten, ten, ten, ten, ten, ten, ten, ten, ten, ten],
+        },
       },
     },
   },
@@ -63,23 +61,10 @@ export default [
         length: 297,
         body: {
           at: new Date("2019-01-22T02:51:45.000Z"),
-          items: [
-            {
-              type: "ADAS",
-              datas: [
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-                adas,
-              ],
-            },
-          ],
+          adas: {
+            type: "ADAS",
+            datas: [adas, adas, adas, adas, adas, adas, adas, adas, adas, adas],
+          },
         },
       },
     },

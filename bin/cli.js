@@ -11,7 +11,6 @@ commander
   .command("parse")
   .description("Parse binary message data")
   .option("-d, --data <data>", "Binary hex data of message")
-  .option("-c, --copy_to_clipboard", "Whether copy parsed result to clipboard")
   .option("-i, --input <input>", "File contains binary hex data of message")
   .option("-o, --output <output>", "Save parsed result to file")
   .action(cmd => {

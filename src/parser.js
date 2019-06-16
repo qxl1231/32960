@@ -64,6 +64,10 @@ function toShift() {
   };
 }
 
+function toBoolean() {
+  return val => !!val;
+}
+
 /**
  * 时间
  */
@@ -184,25 +188,25 @@ const uas = new Telegram()
   .endianess("big")
   .skip(1)
   .skip(5, { type: "bit" })
-  .bit1("ressChargeOver") // 车载储能装置类型过充
-  .bit1("motorTemp") // 驱动电机温度报警
-  .bit1("highVolMuteStatus") // 高压互锁状态报警
-  .bit1("motorControlTemp") // 驱动电机控制器温度报警
-  .bit1("dcdcStatus") // DC-DC 状态报警
-  .bit1("brake") // 制动系统报警
-  .bit1("dcdcTemp") // DC-DC 温度报警
-  .bit1("insulation") // 绝缘报警
-  .bit1("batteryBadConsistency") // 电池单体一致性差报警
-  .bit1("ressNotMatch") // 可充电储能系统不匹配报警
-  .bit1("socJump") // SOC 跳变报警
-  .bit1("socOver") // SOC 过高报警
-  .bit1("batteryLow") // 单体电池欠压报警
-  .bit1("batteryOver") // 单体电池过压报警
-  .bit1("socLow") // SOC 低报警
-  .bit1("ressVolLow") // 车载储能装置类型欠压报警
-  .bit1("ressVolOver") // 车载储能装置类型过压报警
-  .bit1("batteryTempOver") // 电池高温报警
-  .bit1("tempDiff"); // 温度差异报警
+  .bit1("ressChargeOver", { formatter: toBoolean() }) // 车载储能装置类型过充
+  .bit1("motorTemp", { formatter: toBoolean() }) // 驱动电机温度报警
+  .bit1("highVolMuteStatus", { formatter: toBoolean() }) // 高压互锁状态报警
+  .bit1("motorControlTemp", { formatter: toBoolean() }) // 驱动电机控制器温度报警
+  .bit1("dcdcStatus", { formatter: toBoolean() }) // DC-DC 状态报警
+  .bit1("brake", { formatter: toBoolean() }) // 制动系统报警
+  .bit1("dcdcTemp", { formatter: toBoolean() }) // DC-DC 温度报警
+  .bit1("insulation", { formatter: toBoolean() }) // 绝缘报警
+  .bit1("batteryBadConsistency", { formatter: toBoolean() }) // 电池单体一致性差报警
+  .bit1("ressNotMatch", { formatter: toBoolean() }) // 可充电储能系统不匹配报警
+  .bit1("socJump", { formatter: toBoolean() }) // SOC 跳变报警
+  .bit1("socOver", { formatter: toBoolean() }) // SOC 过高报警
+  .bit1("batteryLow", { formatter: toBoolean() }) // 单体电池欠压报警
+  .bit1("batteryOver", { formatter: toBoolean() }) // 单体电池过压报警
+  .bit1("socLow", { formatter: toBoolean() }) // SOC 低报警
+  .bit1("ressVolLow", { formatter: toBoolean() }) // 车载储能装置类型欠压报警
+  .bit1("ressVolOver", { formatter: toBoolean() }) // 车载储能装置类型过压报警
+  .bit1("batteryTempOver", { formatter: toBoolean() }) // 电池高温报警
+  .bit1("tempDiff", { formatter: toBoolean() }); // 温度差异报警
 
 info[cs.REPORT.ALARM] = new Telegram()
   .endianess("big")

@@ -1,3 +1,5 @@
+import camelCase from "lodash/camelCase";
+
 import parser from "./parser";
 import * as cs from "./constants";
 
@@ -40,7 +42,14 @@ export default class Protocol {
    */
   parse(buf) {
     if (!this.isValid(buf)) throw new Error("Invalid packet");
-    return parser.decompress(buf);
+    const result = parser.decompress(buf);
+    if (result.body && result.body.items) {
+      result.body.items.forEach(item => {
+        result.body[camelCase(item.type)] = item;
+      });
+      delete result.body.items;
+    }
+    return result;
   }
 
   /**

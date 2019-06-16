@@ -2,7 +2,7 @@
 
 [![version][0]][1] [![downloads][2]][3]
 
-电动汽车 32960 协议服务端
+电动汽车 32960 协议解析库
 
 ## Install
 
@@ -35,7 +35,9 @@ npx @36node/protocol-32960 parse -h
 
 # Options:
 #  -d, --data <data>        Binary hex data of message
-#  -h, --help               output usage information
+#  -i, --input <input>      File contains binary hex data of message
+#  -d, --data <data>        Binary hex data of message
+#  -o, --output <output>    Save parsed result to file
 
 # example:
 
@@ -43,7 +45,14 @@ npx @36node/protocol-32960 parse -d  232303fe4c53464430333230324a433030313632370
 
 # 如果需要将结果拷贝到内存，可以通过管道
 npx @36node/protocol-32960 parse -d xxxxxxxxxxxxxxx | pbcopy
+
+# 通过文件输入输出
+npx @36node/protocol-32960 parse -i ./some_in.file -o ./some_out.file
 ```
+
+## Protocol
+
+[协议和实现](./docs/protocol.md)
 
 ## Contributing
 
